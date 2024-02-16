@@ -26,10 +26,10 @@
             />
           </div>
         </div>
-        <div class="d-flex justify-space-between mt-10">
+        <div class="d-flex justify-space-between mt-2">
           <TaskKeyButton
             @click="manageDialog('showDialogInfo', true)"
-            :taskId="taskCard.id"
+            :task="taskCard"
           />
           <dialog-info
             :dialogState="showDialogInfo"
@@ -39,6 +39,7 @@
               `Исполнитель: ${
                 taskCard.executor ? taskCard.executor.name : 'Нет исполнителя'
               }`,
+              `Статус задачи: ${taskCard.taskStatus}`,
             ]"
             @closeDialog="manageDialog('showDialogInfo', false)"
           />
@@ -100,16 +101,16 @@ export default {
   },
   methods: {
     setEditState(id) {
-      this.$emit("setEditState", id);
+      this.$emit("setEditState", this.taskCard.taskStatus, id);
     },
     saveDescription(taskValue, id) {
-      this.$emit("saveDescription", taskValue, id);
+      this.$emit("saveDescription", this.taskCard.taskStatus, taskValue, id);
     },
     cancelChanges(id) {
-      this.$emit("cancelChanges", id);
+      this.$emit("cancelChanges", this.taskCard.taskStatus, id);
     },
     deleteTask(id) {
-      this.$emit("deleteTask", id);
+      this.$emit("deleteTask", this.taskCard.taskStatus, id);
     },
     async copyToClipboard() {
       try {
@@ -129,7 +130,12 @@ export default {
       }
     },
     setExecutor(event) {
-      this.$emit("setExecutor", event, this.taskCard.id);
+      this.$emit(
+        "setExecutor",
+        this.taskCard.taskStatus,
+        event,
+        this.taskCard.id
+      );
     },
     manageDialog(name, status) {
       this[name] = status;

@@ -1,17 +1,25 @@
 <template>
-  <v-btn variant="text" prepend-icon="mdi-checkbox-marked">
+  <v-btn
+    :class="
+      task.taskStatus === 'completed' ? 'text-decoration-line-through' : ''
+    "
+    variant="text"
+    prepend-icon="mdi-checkbox-marked"
+  >
     <template v-slot:prepend>
-      <v-icon color="primary"></v-icon>
+      <v-icon
+        :color="task.taskStatus === 'completed' ? 'success' : 'primary'"
+      ></v-icon>
     </template>
-    {{ `Task-${taskId}` }}</v-btn
+    {{ `Task-${task.id}` }}</v-btn
   >
 </template>
 
 <script>
 export default {
   props: {
-    taskId: {
-      type: Number,
+    task: {
+      type: Object,
       required: true,
     },
   },

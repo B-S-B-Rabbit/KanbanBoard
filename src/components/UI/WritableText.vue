@@ -1,5 +1,5 @@
 <template>
-  <div class="ma-5">
+  <div class="ma-4">
     <v-textarea
       variant="outlined"
       v-model="textValueCopy"

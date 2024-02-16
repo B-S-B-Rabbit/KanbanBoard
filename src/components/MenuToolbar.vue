@@ -33,13 +33,13 @@ export default {
       required: true,
     },
     elem: {
-      object: String,
+      object: Object,
       required: true,
     },
   },
   methods: {
-    menuOptionClick(action, taskId) {
-      this.$emit("menuOptionClick", action, taskId);
+    menuOptionClick(action, id) {
+      this.$emit("menuOptionClick", action, id);
     },
   },
 };

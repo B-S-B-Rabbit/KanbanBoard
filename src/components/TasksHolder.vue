@@ -67,23 +67,38 @@ export default {
       required: true,
     },
   },
-  data: () => ({
-    taskCards: [
-      { description: "Надо поспать", isEditing: true, executor: null, id: 1 },
-      {
-        description: "Надо почиллить",
-        isEditing: false,
-        executor: null,
-        id: 2,
-      },
-      { description: "Надо поесть", isEditing: false, executor: null, id: 3 },
-    ],
-    menuOptions: [
-      { title: "Удалить", action: "delete", icon: "mdi-delete" },
-      { title: "Скопировать ключ", action: "copy", icon: "mdi-content-copy" },
-    ],
-    drag: false,
-  }),
+  data() {
+    return {
+      taskCards: [
+        {
+          description: "Надо поспать",
+          isEditing: true,
+          executor: null,
+          id: 1,
+          taskStatus: this.status,
+        },
+        {
+          description: "Надо почиллить",
+          isEditing: false,
+          executor: null,
+          taskStatus: this.status,
+          id: 2,
+        },
+        {
+          description: "Надо поесть",
+          isEditing: false,
+          executor: null,
+          id: 3,
+          taskStatus: this.status,
+        },
+      ],
+      menuOptions: [
+        { title: "Удалить", action: "delete", icon: "mdi-delete" },
+        { title: "Скопировать ключ", action: "copy", icon: "mdi-content-copy" },
+      ],
+      drag: false,
+    };
+  },
   components: {
     TaskCard,
     TaskHolderHead,
