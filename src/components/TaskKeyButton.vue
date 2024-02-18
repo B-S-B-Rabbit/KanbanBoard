@@ -1,18 +1,20 @@
 <template>
-  <v-btn
-    :class="
-      task.taskStatus === 'completed' ? 'text-decoration-line-through' : ''
-    "
-    variant="text"
-    prepend-icon="mdi-checkbox-marked"
-  >
+  <v-btn variant="text" prepend-icon="mdi-checkbox-marked">
+    <template v-slot:default>
+      <p
+        :class="
+          task.taskStatus === 'completed' ? 'text-decoration-line-through' : ''
+        "
+      >
+        {{ `Task-${task.id}` }}
+      </p>
+    </template>
     <template v-slot:prepend>
       <v-icon
         :color="task.taskStatus === 'completed' ? 'success' : 'primary'"
       ></v-icon>
     </template>
-    {{ `Task-${task.id}` }}</v-btn
-  >
+  </v-btn>
 </template>
 
 <script>

@@ -2,19 +2,18 @@
   <div>
     <v-hover v-slot="{ isHovering, props }">
       <v-card
-        :elevation="isHovering ? 16 : 2"
-        v-bind="props"
         class="d-flex flex-column rounded mt-5 task-card"
+        v-bind="props"
         :class="{ 'on-hover': isHovering }"
-        style="width: 364px"
+        :elevation="isHovering ? 16 : 2"
       >
         <div class="d-flex justify-space-between">
           <TaskDescription
+            :task="taskCard"
+            :btnColor="isHovering ? 'blue' : 'transparent'"
             @setTaskEditing="setEditState"
             @cancelChanges="cancelChanges"
             @saveDescription="saveDescription"
-            :task="taskCard"
-            :btnColor="isHovering ? 'blue' : 'transparent'"
           />
           <div class="d-inline-flex">
             <MenuToolbar
@@ -28,8 +27,8 @@
         </div>
         <div class="d-flex justify-space-between mt-2">
           <TaskKeyButton
-            @click="manageDialog('showDialogInfo', true)"
             :task="taskCard"
+            @click="manageDialog('showDialogInfo', true)"
           />
           <dialog-info
             :dialogState="showDialogInfo"
@@ -64,10 +63,9 @@
 </template>
 <script>
 import TaskDescription from "@/components/TaskDescription.vue";
-import MenuToolbar from "./MenuToolbar.vue";
-import MenuSelect from "./MenuSelect.vue";
-import TaskKeyButton from "./TaskKeyButton.vue";
-import DialogInfo from "./UI/DialogInfo.vue";
+import MenuToolbar from "@/components/MenuToolbar.vue";
+import MenuSelect from "@/components/MenuSelect.vue";
+import TaskKeyButton from "@/components/TaskKeyButton.vue";
 export default {
   props: {
     taskCard: {
@@ -88,7 +86,6 @@ export default {
     MenuToolbar,
     MenuSelect,
     TaskKeyButton,
-    DialogInfo,
   },
   data() {
     return {
@@ -99,6 +96,13 @@ export default {
       confirmedDelete: { made: false, status: false },
     };
   },
+  emits: [
+    "setEditState",
+    "saveDescription",
+    "cancelChanges",
+    "deleteTask",
+    "setExecutor",
+  ],
   methods: {
     setEditState(id) {
       this.$emit("setEditState", this.taskCard.taskStatus, id);
@@ -116,9 +120,9 @@ export default {
       try {
         const textToCopy = `Task-${this.taskCard.id}`;
         await navigator.clipboard.writeText(textToCopy);
-        console.log("Текст скопирован в буфер обмена: ", textToCopy);
+        alert(`Текст скопирован в буфер обмена: ${textToCopy}`);
       } catch (err) {
-        console.error("Ошибка при копировании текста: ", err);
+        alert(`Ошибка при копировании текста: ${err}`);
       }
     },
 
@@ -156,6 +160,7 @@ export default {
 <style scoped>
 .task-card {
   background-color: rgb(252, 252, 252);
+  width: 364px;
 }
 .task-card.on-hover {
   background-color: rgb(224, 241, 255);

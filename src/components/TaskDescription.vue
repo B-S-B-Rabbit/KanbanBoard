@@ -1,21 +1,19 @@
 <template>
-  <DescriptionText
-    @changeText="setEditing(task.id)"
-    :textValue="task.description"
+  <base-editable-text
     v-if="!task.isEditing"
+    :textValue="task.description"
+    @changeText="setEditing(task.id)"
   />
-  <DescriptionEdit
-    @cancelChanges="cancelChanges"
-    @saveText="saveDescription"
+  <base-writable-text
+    v-else
     :textValue="task.description"
     :placeholder="'Введите описание задачи'"
-    v-else
+    @cancelChanges="cancelChanges"
+    @saveText="saveDescription"
   />
 </template>
 
 <script>
-import DescriptionText from "./UI/EditableText.vue";
-import DescriptionEdit from "./UI/WritableText.vue";
 export default {
   props: {
     task: {
@@ -23,10 +21,7 @@ export default {
       required: true,
     },
   },
-  components: {
-    DescriptionText,
-    DescriptionEdit,
-  },
+  emits: ["setTaskEditing", "saveDescription", "cancelChanges"],
   methods: {
     setEditing(id) {
       this.$emit("setTaskEditing", id);

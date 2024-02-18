@@ -2,9 +2,9 @@
   <div class="d-flex justify-space-between align-center">
     <h1 class="text-h5">{{ taskType }}: {{ numberOfTasks }}</h1>
     <v-card
-      :color="numberOfTasks <= limitTasks ? 'blue' : 'red'"
       v-if="limitTasks"
       class="pa-1 mt-1"
+      :color="numberOfTasks <= limitTasks ? 'blue' : 'red'"
     >
       Max: {{ limitTasks }}
     </v-card>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import MenuToolbar from "./MenuToolbar.vue";
+import MenuToolbar from "@/components/MenuToolbar.vue";
 export default {
   props: {
     taskType: {
@@ -58,6 +58,7 @@ export default {
       optionIconName: "mdi-cog",
     };
   },
+  emits: ["menuOptionClick"],
   methods: {
     forwardMenuOptionClick(action, holderType) {
       this.$emit("menuOptionClick", action, holderType);

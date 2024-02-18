@@ -1,10 +1,5 @@
 <template>
-  <v-dialog
-    max-width="450px"
-    :modelValue="dialogState"
-    @update:modelValue="closeDialog"
-    width="auto"
-  >
+  <v-dialog max-width="450px" :modelValue="dialogState">
     <v-card>
       <v-card-text v-for="(info, index) in dialogData" :key="index">
         {{ info }}
@@ -15,7 +10,9 @@
         ></v-divider>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" block @click="closeDialog">Закрыть</v-btn>
+        <base-button-text :color="primary" block @click="closeDialog"
+          >Закрыть</base-button-text
+        >
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -33,6 +30,7 @@ export default {
       required: true,
     },
   },
+  emits: ["closeDialog"],
   methods: {
     closeDialog() {
       this.$emit("closeDialog");

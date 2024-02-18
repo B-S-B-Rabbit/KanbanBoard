@@ -1,9 +1,10 @@
 <template>
-  <menu-dropdown
+  <base-menu-dropdown
     :close-on-content-click="false"
     :buttonType="rootType"
     :menuPosition="'end'"
     :menuIconName="menuIconName"
+    :iconType="'icon'"
   >
     <v-select
       menu
@@ -12,19 +13,17 @@
       placeholder="Назначить исполнителя"
       clearable
       label="Select"
+      variant="solo"
       :items="options"
       :item-props="itemProps"
-      variant="solo"
       :modelValue="selectedValue"
       @update:modelValue="handleUpdatingSelection"
     ></v-select>
-  </menu-dropdown>
+  </base-menu-dropdown>
 </template>
 
 <script>
-import MenuDropdown from "./UI/MenuDropdown.vue";
 export default {
-  components: { MenuDropdown },
   props: {
     menuIconName: {
       type: String,
@@ -43,6 +42,7 @@ export default {
       required: true,
     },
   },
+  emits: ["menuOptionClick", "updateSelection"],
   methods: {
     menuOptionClick(action, taskId) {
       this.$emit("menuOptionClick", action, taskId);

@@ -1,12 +1,9 @@
 <template>
   <div class="d-inline-flex">
-    <p
-      class="d-inline-flex py-5 ml-5 description"
-      style="min-width: 209px; max-width: 209px; word-break: break-word"
-    >
+    <p class="editable-text d-inline-flex py-5 ml-5 description">
       {{ textValue }}
     </p>
-    <small-icon-btn @click="changeText" :iconName="'mdi-pencil'" />
+    <base-button-icon @click="changeText" :iconName="'mdi-pencil'" />
   </div>
 </template>
 
@@ -23,7 +20,13 @@ export default {
       this.$emit("changeText");
     },
   },
+  name: "base-editable-text",
 };
 </script>
 
-<style></style>
+<style scoped>
+.editable-text {
+  width: 209px;
+  word-break: break-word;
+}
+</style>

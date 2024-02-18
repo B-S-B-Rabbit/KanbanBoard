@@ -1,5 +1,5 @@
 <template>
-  <menu-dropdown :menuPosition="'center'" :menuIconName="menuIconName">
+  <base-menu-dropdown :menuPosition="'center'" :menuIconName="menuIconName">
     <v-list>
       <v-list-item>
         <v-list-item-title
@@ -7,22 +7,19 @@
           :key="index"
           :value="index"
         >
-          <v-btn
-            @click="menuOptionClick(option.action, elem.id)"
-            variant="text"
+          <base-button-text
             :append-icon="option.icon"
-            >{{ option.title }}</v-btn
+            @click="menuOptionClick(option.action, elem.id)"
+            >{{ option.title }}</base-button-text
           >
         </v-list-item-title>
       </v-list-item>
     </v-list>
-  </menu-dropdown>
+  </base-menu-dropdown>
 </template>
 
 <script>
-import MenuDropdown from "./UI/MenuDropdown.vue";
 export default {
-  components: { MenuDropdown },
   props: {
     menuOptions: {
       type: Array,
@@ -37,6 +34,7 @@ export default {
       required: true,
     },
   },
+  emits: ["menuOptionClick"],
   methods: {
     menuOptionClick(action, id) {
       this.$emit("menuOptionClick", action, id);

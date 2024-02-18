@@ -1,17 +1,17 @@
 <template>
-  <v-dialog max-width="450px" :modelValue="dialogState" persistent width="auto">
+  <v-dialog max-width="450px" :modelValue="dialogState" persistent>
     <v-card>
       <v-card-title class="d-flex justify-center text-h5">
         {{ action }}
       </v-card-title>
       <v-card-text>{{ confirmText }}</v-card-text>
       <v-card-actions class="d-flex justify-space-between">
-        <v-btn color="blue-darken-1" variant="text" @click="cancelActionDialog">
+        <base-button-text :color="'blue-darken-1'" @click="cancelActionDialog">
           Отменить
-        </v-btn>
-        <v-btn color="red-darken-1" variant="text" @click="confirmActionDialog">
+        </base-button-text>
+        <base-button-text :color="'red-darken-1'" @click="confirmActionDialog">
           Подтвердить
-        </v-btn>
+        </base-button-text>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -33,6 +33,7 @@ export default {
       required: true,
     },
   },
+  emits: ["cancelAction", "confirmAction"],
   methods: {
     cancelActionDialog() {
       this.$emit("cancelAction");

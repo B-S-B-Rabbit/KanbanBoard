@@ -1,10 +1,9 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import store from "./store";
 import vuetify from "./plugins/vuetify";
 import { loadFonts } from "./plugins/webfontloader";
 import components from "@/components/UI";
 loadFonts();
 const app = createApp(App);
 components.forEach((component) => app.component(component.name, component));
-app.use(store).use(vuetify).mount("#app");
+app.use(vuetify).mount("#app");

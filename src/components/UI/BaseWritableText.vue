@@ -12,15 +12,15 @@
     >
     </v-textarea>
     <div class="d-flex justify-space-between">
-      <small-icon-btn
+      <base-button-icon
         :iconColor="'green'"
-        @click="saveText(textValueCopy)"
         :iconName="'mdi-check'"
+        @click="saveText(textValueCopy)"
       />
-      <small-icon-btn
+      <base-button-icon
         :iconColor="'red'"
-        @click="cancelChanges"
         :iconName="'mdi-cancel'"
+        @click="cancelChanges"
       />
     </div>
   </div>
@@ -43,6 +43,7 @@ export default {
       textValueCopy: this.textValue,
     };
   },
+  emits: ["saveText", "cancelChanges"],
   methods: {
     saveText(textValueCopy) {
       this.$emit("saveText", textValueCopy);
@@ -51,6 +52,7 @@ export default {
       this.$emit("cancelChanges");
     },
   },
+  name: "base-writable-text",
 };
 </script>
 
