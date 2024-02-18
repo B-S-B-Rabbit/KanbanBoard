@@ -139,27 +139,6 @@ To get a local copy up and running follow these simple example steps.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- USAGE EXAMPLES -->
-## Usage
-* Add and edit new task
-
-![img_3.png](img_3.png)
-* Assign an executor
-
-![img_4.png](img_4.png)
-* Set a limit on the number of tasks
-
-![img_5.png](img_5.png)
-* Track the status of the task
-
-![img_6.png](img_6.png)
-
-And much more
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- ROADMAP -->
 ## Roadmap
 
