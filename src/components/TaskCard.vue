@@ -160,7 +160,7 @@ export default {
 <style scoped>
 .task-card {
   background-color: rgb(252, 252, 252);
-  width: 364px;
+  width: 264px;
 }
 .task-card.on-hover {
   background-color: rgb(224, 241, 255);
