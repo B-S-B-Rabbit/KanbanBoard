@@ -9,6 +9,7 @@
         >
           <base-button-text
             :append-icon="option.icon"
+            :variant="'text'"
             @click="menuOptionClick(option.action, elem.id)"
             >{{ option.title }}</base-button-text
           >

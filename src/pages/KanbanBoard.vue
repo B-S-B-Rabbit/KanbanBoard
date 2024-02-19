@@ -1,5 +1,5 @@
 <template>
-  <v-container min-width="264px" class="d-flex flex-row justify-center">
+  <v-container min-width="320px" class="d-flex flex-row justify-center">
     <div
       v-for="status in statuses"
       :key="status"
@@ -244,7 +244,7 @@ export default {
 
 .tasks-list {
   background-color: rgb(243, 243, 243);
-  width: 264px;
+  width: 320px;
 }
 .list-group {
   width: 100%;

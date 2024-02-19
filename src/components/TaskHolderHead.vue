@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-space-between align-center">
-    <h1 class="text-h5">{{ taskType }}: {{ numberOfTasks }}</h1>
+    <h1 class="task-header text-h5">{{ taskType }}: {{ numberOfTasks }}</h1>
     <v-card
       v-if="limitTasks"
       class="pa-1 mt-1"
@@ -67,4 +67,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.task-header {
+  max-width: 180px;
+  word-wrap: break-word;
+}
+</style>
