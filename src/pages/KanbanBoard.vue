@@ -1,5 +1,5 @@
 <template>
-  <v-container class="d-flex flex-row justify-space-between">
+  <v-container width="364px" class="d-flex flex-row justify-space-between">
     <div
       v-for="status in statuses"
       :key="status"
